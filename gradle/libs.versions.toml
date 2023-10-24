@@ -1,33 +1,37 @@
 [versions]
 
-ktx = '1.9.0'
+espresso-core = "3.5.1"
+androidx-junit = "1.1.5"
+junit = "4.13.2"
+ktx = '1.12.0'
 appcompat = '1.6.1'
 navigation-compose = '2.5.3'
+compose-compiler="1.5.3"
 safe-args-kotlin = '2.5.3'
-activity-compose = '1.6.1'
-activity-ktx = '1.6.1'
-lifecycle-viewmodel-compose = '2.6.0'
+activity-compose = '1.8.0'
+activity-ktx = '1.8.0'
+lifecycle-viewmodel-compose = '2.6.2'
 retrofit = '2.9.0'
 gson = '2.10'
 okhttp = '4.7.2'
-coroutines = '1.6.4'
-hilt = '1.0.0'
-hilt-navigation-compose = '1.1.0-alpha01'
-hilt-android = '2.44'
-hilt-compiler = '2.45'
-android-gradle-plugin = '7.3.1'
-android-library = '7.3.1'
-kotlin-android = '1.8.10'
-dagger-hilt-android = '2.45'
-material3='1.0.1'
-android-material='1.8.0'
-tooling='1.4.0-rc01'
+coroutines = '1.7.1'
+hilt-navigation-fragment = '1.0.0'
+hilt-navigation-compose = '1.1.0-rc01'
+android-gradle-plugin = "8.1.2"
+android-library = "8.1.2"
+kotlin-android = '1.9.10'
+hilt = '2.48'
+material3='1.2.0-alpha10'
+android-material='1.10.0'
+tooling='1.6.0-alpha08'
 kapt='1.8.10'
-room='2.5.2'
+room='2.6.0'
 data-store-preferences='1.0.0'
 
 [libraries]
 
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
 androidx-ktx = { group = 'androidx.core', name = 'core-ktx', version.ref = 'ktx' }
 androidx-appcompat = { group = 'androidx.appcompat', name = 'appcompat', version.ref = 'appcompat' }
 android-material = { group = 'com.google.android.material', name = 'material', version.ref = 'android-material'}
@@ -40,12 +44,13 @@ androidx-activity-ktx = { group = 'androidx.activity', name = 'activity-ktx', ve
 androidx-lifecycle-viewmodel-compose = { group = 'androidx.lifecycle', name = 'lifecycle-viewmodel-compose', version.ref = 'lifecycle-viewmodel-compose' }
 androidx-compose-runtime-livedata = { group = 'androidx.compose.runtime', name = 'runtime-livedata' }
 androidx-compose-runtime-rxjava2 = { group = 'androidx.compose.runtime', name = 'runtime-rxjava2' }
-androidx-hilt-navigation-fragment = { group = 'androidx.hilt', name = 'hilt-navigation-fragment', version.ref = 'hilt' }
+androidx-hilt-navigation-fragment = { group = 'androidx.hilt', name = 'hilt-navigation-fragment', version.ref = 'hilt-navigation-fragment' }
 androidx-hilt-navigation-compose = { group = 'androidx.hilt', name = 'hilt-navigation-compose', version.ref = 'hilt-navigation-compose' }
 androidx-room = { group = 'androidx.room', name = 'room-runtime', version.ref = 'room' }
 androidx-room-compiler = { group = 'androidx.room', name = 'room-compiler', version.ref = 'room' }
 androidx-data-store-preferences = { group = 'androidx.datastore', name = 'datastore-preferences', version.ref = 'data-store-preferences'}
 
+junit = { module = "junit:junit", version.ref = "junit" }
 retrofit2 = { group = 'com.squareup.retrofit2', name = 'retrofit', version.ref = 'retrofit' }
 retrofit2-converter-gson = { group = 'com.squareup.retrofit2', name = 'converter-gson', version.ref = 'retrofit' }
 
@@ -56,21 +61,21 @@ okhttp3-logging-interceptor = { group = 'com.squareup.okhttp3', name = 'logging-
 
 kotlinx-coroutines = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-android', version.ref = 'coroutines' }
 
-dagger-hilt-android = { group = 'com.google.dagger', name = 'hilt-android', version.ref = 'hilt-android' }
-dagger-hilt-compiler = { group = 'com.google.dagger', name = 'hilt-compiler', version.ref = 'hilt-compiler' }
+dagger-hilt-android = { group = 'com.google.dagger', name = 'hilt-android', version.ref = 'hilt' }
+dagger-hilt-compiler = { group = 'com.google.dagger', name = 'hilt-compiler', version.ref = 'hilt' }
 
 [plugins]
 
 android-application = { id = 'com.android.application', version.ref = 'android-gradle-plugin' }
 android-library = { id = 'com.android.library', version.ref = 'android-library' }
 kotlin-android = { id = 'org.jetbrains.kotlin.android', version.ref = 'kotlin-android' }
-dagger-hilt-android = { id = 'com.google.dagger.hilt.android', version.ref = 'dagger-hilt-android' }
+dagger-hilt-android = { id = 'com.google.dagger.hilt.android', version.ref = 'hilt' }
 kotlin-kapt = { id = 'org.jetbrains.kotlin.kapt', version.ref = 'kapt'}
 androidx-safe-args-kotlin = { id = 'androidx.navigation.safeargs.kotlin', version.ref = 'safe-args-kotlin' }
 
 [bundles]
 
-feature-module = [
+presentation-module = [
     'androidx-ktx',
     'androidx-appcompat',
     'androidx-material3',
@@ -85,10 +90,18 @@ feature-module = [
     'androidx-compose-runtime-rxjava2',
     'androidx-hilt-navigation-fragment',
     'androidx-hilt-navigation-compose',
+    'kotlinx-coroutines',
+]
+
+data-module = [
     'retrofit2',
     'gson',
     'retrofit2-converter-gson',
     'okhttp3',
     'okhttp3-logging-interceptor',
     'kotlinx-coroutines',
+]
+
+domain-module = [
+    'kotlinx-coroutines'
 ]
